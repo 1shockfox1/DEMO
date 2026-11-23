@@ -1,0 +1,66 @@
+﻿<Window x:Class="Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Каталог - Чудо Обувь" Height="750" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource ColorMain}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TxtWelcome" Grid.Row="0" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <StackPanel x:Name="FilterPanel" Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="TxtSearch" Width="200" Height="25" Margin="0,0,20,0" TextChanged="TxtSearch_TextChanged"/>
+        </StackPanel>
+
+        <!-- Таблица товаров -->
+        <DataGrid x:Name="GridProducts" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" 
+                  SelectionMode="Single" Margin="0,0,0,10" LoadingRow="GridProducts_LoadingRow"
+                  RowHeight="50">
+            <DataGrid.Columns>
+                <!-- НОВАЯ КОЛОНКА С КАРТИНКОЙ -->
+                <DataGridTemplateColumn Header="Фото" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImagePath}" Width="50" Height="40" Stretch="Uniform"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Наименование" Binding="{Binding NameProduct}" Width="*"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="150"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Остаток" Binding="{Binding TotalStock}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Добавить в заказ" Width="200" Height="35" 
+                    Background="{StaticResource ColorAccent}" Foreground="White" FontWeight="Bold"
+                    Click="BtnAddToOrder_Click"/>
+
+            <Button Content="Оформить заказ" Width="200" Height="35" Margin="10,0,0,0" 
+                    Background="{StaticResource ColorAccent}" Foreground="White" FontWeight="Bold"
+                    Click="BtnCheckout_Click"/>
+
+            <TextBlock x:Name="TxtTotal" Text="Итого: 0 руб." FontSize="16" FontWeight="Bold" 
+                       VerticalAlignment="Center" Margin="20,0,0,0"/>
+        </StackPanel>
+
+        <DataGrid x:Name="GridCart" Grid.Row="4" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Товар" Binding="{Binding NameProduct}" Width="*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding Kolvo}" Width="80"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Summa}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\IMG_KB_164811.png" />
+    <None Remove="Images\IMG_KB_164816.png" />
+    <None Remove="Images\IMG_MB_174349.png" />
+    <None Remove="Images\IMG_WSho_174409.png" />
+    <None Remove="Images\IMG_WSho_185202.png" />
+    <None Remove="Images\IMG_WSho_185545.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\IMG_KB_164811.png" />
+    <Resource Include="Images\IMG_KB_164816.png" />
+    <Resource Include="Images\IMG_MB_174349.png" />
+    <Resource Include="Images\IMG_WSho_174409.png" />
+    <Resource Include="Images\IMG_WSho_185202.png" />
+    <Resource Include="Images\IMG_WSho_185545.png" />
+  </ItemGroup>
+
+</Project>
